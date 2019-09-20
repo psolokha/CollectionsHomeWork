@@ -5,7 +5,7 @@ import java.util.*;
 
 public class WordsContainer {
 
-    Map<String, Integer> wordsContainer = new TreeMap<String, Integer>();
+    private Map<String, Integer> wordsContainer = new TreeMap<String, Integer>();
     private static WordsContainer instance;
 
     private WordsContainer(){};
@@ -38,6 +38,10 @@ public class WordsContainer {
     }
 
     public String printMostPopularWord() {
+        if (wordsContainer.isEmpty()) {
+            System.out.println("Container is empty");
+            return null;
+        }
         String sTmp = "";
         Integer iTmp = 0;
         Iterator<Map.Entry<String, Integer>> iterator = wordsContainer.entrySet().iterator();
@@ -53,6 +57,10 @@ public class WordsContainer {
     }
 
     public void printWordsInContainer() {
+        if (wordsContainer.isEmpty()) {
+            System.out.println("Container is empty");
+            return;
+        }
         wordsContainer.forEach((k,v) -> {
             System.out.println(k + ": " + v);
         });
