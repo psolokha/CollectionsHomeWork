@@ -37,23 +37,21 @@ public class WordsContainer {
 
     }
 
-    public String printMostPopularWord() {
+    public void printMostPopularWord() {
         if (wordsContainer.isEmpty()) {
             System.out.println("Container is empty");
-            return null;
+            return;
         }
-        String sTmp = "";
-        Integer iTmp = 0;
-        Iterator<Map.Entry<String, Integer>> iterator = wordsContainer.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, Integer> tmp = iterator.next();
-            if (tmp.getValue() > iTmp) {
-                sTmp = tmp.getKey();
-                iTmp = tmp.getValue();
-            }
+
+        int tmpNum = 0;
+        for (Integer num:wordsContainer.values()) {
+            if (num > tmpNum) tmpNum = num;
         }
-        System.out.println("\nThe most popular word is: " + sTmp + "\nNumber of entries: " + iTmp);
-        return sTmp;
+
+        for (Map.Entry<String,Integer> entry: wordsContainer.entrySet()) {
+            if (entry.getValue() == tmpNum) System.out.println("Most popular word is:\n" + entry.getKey() + ": " + entry.getValue() + " times");
+        }
+
     }
 
     public void printWordsInContainer() {
@@ -64,5 +62,6 @@ public class WordsContainer {
         wordsContainer.forEach((k,v) -> {
             System.out.println(k + ": " + v);
         });
+
     }
 }
