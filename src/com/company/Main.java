@@ -11,7 +11,9 @@ public class Main {
         System.out.println("Введите путь к файлу:");
         String filePath = null;
         try {
-            filePath = new BufferedReader(new InputStreamReader(System.in)).readLine();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            filePath = reader.readLine();
+            reader.close();
             filePath.replace("\\", "\\\\");
         } catch (IOException e) {
             e.printStackTrace();
