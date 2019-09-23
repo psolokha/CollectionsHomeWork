@@ -21,8 +21,8 @@ public class WordsContainer {
     }
 
     public void parseFile(String path) {
-        try {
-            BufferedReader fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path))));
+        try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path))))) {
+
             while (fileReader.ready()) {
                 StringTokenizer tokenizer = new StringTokenizer(fileReader.readLine(),"*& ,.!?_:;+=-/><'#@!\t\"\\()[]{}%$`");
                 while (tokenizer.hasMoreElements()) addWordToConatainer(tokenizer.nextToken().toLowerCase());
