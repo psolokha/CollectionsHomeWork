@@ -3,14 +3,14 @@ package com.company;
 import java.io.*;
 import java.util.*;
 
-public class WordsContainer {
+    class WordsContainer {
 
-    private Map<String, Integer> wordsContainer = new TreeMap<String, Integer>();
+    private Map<String, Integer> wordsContainer = new TreeMap<>();
     private static WordsContainer instance;
 
-    private WordsContainer(){};
+    private WordsContainer(){}
 
-    public static WordsContainer getInstance() {
+     static WordsContainer getInstance() {
         if (instance == null) instance = new WordsContainer();
         return instance;
     }
@@ -20,14 +20,13 @@ public class WordsContainer {
         else wordsContainer.put(word,1);
     }
 
-    public void parseFile(String path) {
+     void parseFile(String path) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path))))) {
 
             while (fileReader.ready()) {
-                StringTokenizer tokenizer = new StringTokenizer(fileReader.readLine(),"*& ,.!?_:;+=-/><'#@!\t\"\\()[]{}%$`");
+                StringTokenizer tokenizer = new StringTokenizer(fileReader.readLine(),"*& ,.!?_:;+=-/><'#@\t\"\\()[]{}%$`");
                 while (tokenizer.hasMoreElements()) addWordToConatainer(tokenizer.nextToken().toLowerCase());
             }
-            fileReader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Can not open file.");
@@ -37,7 +36,7 @@ public class WordsContainer {
 
     }
 
-    public void printMostPopularWord() {
+     void printMostPopularWord() {
         if (wordsContainer.isEmpty()) {
             System.out.println("Container is empty");
             return;
@@ -54,14 +53,12 @@ public class WordsContainer {
 
     }
 
-    public void printWordsInContainer() {
+     void printWordsInContainer() {
         if (wordsContainer.isEmpty()) {
             System.out.println("Container is empty");
             return;
         }
-        wordsContainer.forEach((k,v) -> {
-            System.out.println(k + ": " + v);
-        });
+        wordsContainer.forEach((k,v) -> System.out.println(k + ": " + v));
 
     }
 }
